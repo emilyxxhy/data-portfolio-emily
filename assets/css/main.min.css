@@ -1,0 +1,70 @@
+/* Custom CSS for main.min.css */
+
+/* Base Styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #FFFBF5;
+    color: #1F2937;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+}
+
+/* Nav Link Active State (Sticky Header Highlight) */
+.nav-link-active {
+    font-weight: 700;
+    color: #1E00D9; /* brand-blue */
+    position: relative;
+}
+
+.nav-link-active::after {
+    content: '';
+    display: block;
+    width: 60%;
+    height: 3px;
+    background-color: #1E00D9; /* brand-blue */
+    border-radius: 2px;
+    position: absolute;
+    bottom: -8px; /* Adjusted for better spacing in sticky header */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Typing Animation & Cursor */
+/* The main typing animation is handled by Tailwind config, this provides the cursor style */
+.typing-cursor {
+    overflow: hidden; 
+    white-space: nowrap; 
+    /* This border is controlled by JS class on completion */
+    border-right: .15em solid #F97316; /* brand-orange cursor */
+}
+
+/* Section Fade-In (Scroll Animation) */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-delay: var(--animation-delay, 0s); /* For staggered load */
+    will-change: opacity, transform;
+}
+
+.fade-in.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Tech Chip Styling */
+.tech-chip {
+    @apply text-xs font-medium py-1 px-3 rounded-full shadow-sm;
+}
+
+/* Reduced Motion Support (Accessibility) */
+@media (prefers-reduced-motion) {
+    .animate-typing, .fade-in {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
